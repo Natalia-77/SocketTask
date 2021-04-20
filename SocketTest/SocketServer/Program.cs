@@ -80,7 +80,7 @@ namespace SocketServer
 
 
             IPAddress localAddr = IPAddress.Parse("192.168.1.2");
-            int port = 2895;
+            int port = 2895;  
             TcpListener server = new TcpListener(localAddr, port);            
             server.Start();
             // 
