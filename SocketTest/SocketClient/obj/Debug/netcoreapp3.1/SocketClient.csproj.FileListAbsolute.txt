@@ -11,3 +11,16 @@ C:\Users\user\source\repos\SocketTest\SocketClient\obj\Debug\netcoreapp3.1\Socke
 C:\Users\user\source\repos\SocketTest\SocketClient\obj\Debug\netcoreapp3.1\SocketClient.dll
 C:\Users\user\source\repos\SocketTest\SocketClient\obj\Debug\netcoreapp3.1\SocketClient.pdb
 C:\Users\user\source\repos\SocketTest\SocketClient\obj\Debug\netcoreapp3.1\SocketClient.genruntimeconfig.cache
+D:\Natalia\Project1\SocketTask\SocketTest\SocketClient\bin\Debug\netcoreapp3.1\SocketClient.exe
+D:\Natalia\Project1\SocketTask\SocketTest\SocketClient\bin\Debug\netcoreapp3.1\SocketClient.deps.json
+D:\Natalia\Project1\SocketTask\SocketTest\SocketClient\bin\Debug\netcoreapp3.1\SocketClient.runtimeconfig.json
+D:\Natalia\Project1\SocketTask\SocketTest\SocketClient\bin\Debug\netcoreapp3.1\SocketClient.runtimeconfig.dev.json
+D:\Natalia\Project1\SocketTask\SocketTest\SocketClient\bin\Debug\netcoreapp3.1\SocketClient.dll
+D:\Natalia\Project1\SocketTask\SocketTest\SocketClient\bin\Debug\netcoreapp3.1\SocketClient.pdb
+D:\Natalia\Project1\SocketTask\SocketTest\SocketClient\obj\Debug\netcoreapp3.1\SocketClient.csprojAssemblyReference.cache
+D:\Natalia\Project1\SocketTask\SocketTest\SocketClient\obj\Debug\netcoreapp3.1\SocketClient.AssemblyInfoInputs.cache
+D:\Natalia\Project1\SocketTask\SocketTest\SocketClient\obj\Debug\netcoreapp3.1\SocketClient.AssemblyInfo.cs
+D:\Natalia\Project1\SocketTask\SocketTest\SocketClient\obj\Debug\netcoreapp3.1\SocketClient.csproj.CoreCompileInputs.cache
+D:\Natalia\Project1\SocketTask\SocketTest\SocketClient\obj\Debug\netcoreapp3.1\SocketClient.dll
+D:\Natalia\Project1\SocketTask\SocketTest\SocketClient\obj\Debug\netcoreapp3.1\SocketClient.pdb
+D:\Natalia\Project1\SocketTask\SocketTest\SocketClient\obj\Debug\netcoreapp3.1\SocketClient.genruntimeconfig.cache

@@ -80,10 +80,13 @@ namespace SocketServer
 
 
             IPAddress localAddr = IPAddress.Parse("192.168.1.2");
-            int port = 2895;  
+            int port = 2895;            
             TcpListener server = new TcpListener(localAddr, port);            
             server.Start();
-            // 
+
+            //після виклтку методу Старт запускається безкінечний цикл,в якому об"єкт TcpListener буде очікувати 
+            //підключення клієнта через метод AcceptTcpClient() і як тільки це відбудеться,створиться об"єкт 
+            //
             while (true)
             {
                 try
@@ -91,27 +94,39 @@ namespace SocketServer
                     // Підключення клієнта
                     TcpClient client = server.AcceptTcpClient();
                     NetworkStream stream = client.GetStream();
+
                     // Обмін даними
                     try
                     {
+                        //спочатку відбувається отримання повідомлення,а вже потім сервер відправляє повідомлення-відповідь.
                         if (stream.CanRead)
                         {
+                            //спочатку відбувається отримання повідомлення,а вже потім сервер відправляє повідомлення-відповідь.
+                            //Створємо масив байт,які отримує сервер.
                             byte[] myReadBuffer = new byte[1024];
+
                             StringBuilder myCompleteMessage = new StringBuilder();
-                            int numberOfBytesRead = 0;
+
+                            //кількість считаних байтів.
+                            int numbBytes = 0;
                             do
                             {
-                                numberOfBytesRead = stream.Read(myReadBuffer, 0, myReadBuffer.Length);
-                                myCompleteMessage.AppendFormat("{0}", Encoding.UTF8.GetString(myReadBuffer, 0, numberOfBytesRead));
+                                numbBytes = stream.Read(myReadBuffer, 0, myReadBuffer.Length);
+                                myCompleteMessage.AppendFormat("{0}", Encoding.UTF8.GetString(myReadBuffer, 0, numbBytes));
                             }
+                            //поки є дані для считування(DataAvailable == true)
                             while (stream.DataAvailable);
+
                             Console.WriteLine(DateTime.Now.ToShortTimeString() + ": " + myCompleteMessage.ToString());
-                            byte[] responseData = Encoding.UTF8.GetBytes("УСПЕШНО!");
+
+                            //відправлення відповіді сервером.
+                            byte[] responseData = Encoding.UTF8.GetBytes("Successfull!");
                             stream.Write(responseData, 0, responseData.Length);
                         }
                     }
                     finally
                     {
+
                        // stream.Close();
                        // client.Close();
                     }
