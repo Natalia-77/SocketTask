@@ -88,10 +88,10 @@ namespace SocketServer
             {
                 try
                 {
-                    // Подключение клиента
+                    // Підключення клієнта
                     TcpClient client = server.AcceptTcpClient();
                     NetworkStream stream = client.GetStream();
-                    // Обмен данными
+                    // Обмін даними
                     try
                     {
                         if (stream.CanRead)
