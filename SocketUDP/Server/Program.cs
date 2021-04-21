@@ -24,6 +24,7 @@ namespace Server
                 if (name == "Valia") Info = "Her name is Valia";             
                 byte[] sdata = Encoding.ASCII.GetBytes(Info);
                 udpc.Send(sdata, sdata.Length, ep);
+
             }
         }
     }
