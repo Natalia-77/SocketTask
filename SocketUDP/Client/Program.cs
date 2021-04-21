@@ -9,7 +9,8 @@ namespace Client
     {
         static void Main(string[] args)
         {
-            
+            //Console.WriteLine("Hello World!");
+
             UdpClient udpc = new UdpClient("127.0.0.1", 2055);
             IPEndPoint ep = null;
             while (true)
