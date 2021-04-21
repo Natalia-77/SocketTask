@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31112.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsynchUPD", "AsynchUPD\AsynchUPD.csproj", "{99F9B8C5-64EB-47DC-8497-2CB3CBEAF777}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerUDP", "ServerUDP\ServerUDP.csproj", "{A76590B1-1227-43E4-A821-FBCEF4D4CC78}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{99F9B8C5-64EB-47DC-8497-2CB3CBEAF777}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99F9B8C5-64EB-47DC-8497-2CB3CBEAF777}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99F9B8C5-64EB-47DC-8497-2CB3CBEAF777}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99F9B8C5-64EB-47DC-8497-2CB3CBEAF777}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A76590B1-1227-43E4-A821-FBCEF4D4CC78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A76590B1-1227-43E4-A821-FBCEF4D4CC78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A76590B1-1227-43E4-A821-FBCEF4D4CC78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A76590B1-1227-43E4-A821-FBCEF4D4CC78}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5C66FEB3-A0E2-43E7-BC8B-B72A1F127808}
+	EndGlobalSection
+EndGlobal
