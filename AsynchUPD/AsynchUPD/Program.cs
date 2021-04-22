@@ -24,7 +24,6 @@ namespace AsynchUPD
             var flag = true;
             do
             {
-
                 var str = Console.ReadLine();              
 
                 //комбінація для виходу
