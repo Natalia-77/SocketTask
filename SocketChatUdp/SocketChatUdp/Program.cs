@@ -28,7 +28,7 @@ namespace Client
             Console.WriteLine("Enter port server");
             remotePort = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("Enter user nsme");
+            Console.WriteLine("Enter user name");
             string name = Console.ReadLine();
 
             Console.WriteLine("Enter your message");
@@ -66,16 +66,59 @@ namespace Client
             }
             finally
             {
-                if(listeningSocket!=null)
-                {
-                    //блокування передачі та отримання даних для об"єкта Socket.
-                    listeningSocket.Shutdown(SocketShutdown.Both);
-
-                    listeningSocket.Close();
-                    listeningSocket = null;
-                }
+                Close();
                 
             }
+           
+
+
+        }
+
+        private static void Close()
+        {
+            if (listeningSocket != null)
+            {
+                //блокування передачі та отримання даних для об"єкта Socket.
+                listeningSocket.Shutdown(SocketShutdown.Both);
+
+                listeningSocket.Close();
+                listeningSocket = null;
+            }
+        }
+
+
+        //поток для прослуховування підключень.
+        private static void Listen()
+        {
+            IPEndPoint localPort = new IPEndPoint(IPAddress.Parse("0.0.0.0"), 0);
+
+            //приєднання до вказаних даних.
+            listeningSocket.Bind(localPort);
+
+            //далі будесо зчитувати і отримувати дані,що будуть введені іншими клієнтами.
+            //Відповідні повідомлення будуть з"являтись для перегляду іншим клієнтам.
+            try
+            {
+                //в безкінечному циклі прийматимуться повідомлення.
+                while(true)
+                {
+
+
+
+                }
+
+
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("Error message"+ ex.Message.ToString());
+            }
+            finally
+            {
+                Close();
+            }
+
+
         }
     }
 }
