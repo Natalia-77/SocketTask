@@ -68,8 +68,7 @@ namespace Client
             {
                 Close();
                 
-            }
-           
+            }          
 
 
         }
