@@ -120,12 +120,12 @@ namespace Client
                         bytes = listeningSocket.ReceiveFrom(data, ref endPoint);
 
                         //декодування діапазону байтів з масиву байтів в строку.
-                        stringBuilder.Append()
-
+                        stringBuilder.Append(Encoding.Unicode.GetString(data, 0, bytes));
                     }
                     while (listeningSocket.Available > 0);//повертає кількість отриманих і доступних для читання даних.
-
-
+                    
+                    IPEndPoint pEndPoint = endPoint as IPEndPoint;
+                    Console.WriteLine("{0}:{1} --->> {2}", pEndPoint.Address.ToString(), pEndPoint.Port, stringBuilder.ToString());
                 }
 
 
