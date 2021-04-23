@@ -102,7 +102,28 @@ namespace Client
                 //в безкінечному циклі прийматимуться повідомлення.
                 while(true)
                 {
+                    //отримання повідомлення.
+                    StringBuilder stringBuilder = new StringBuilder();
 
+                    //кількість отриманитх байтів.
+                    int bytes = 0;
+
+                    //буфер для отриманих даних.
+                    byte[] data = new byte[256];
+
+                    //адреса,з якої прийшли дані.
+                    EndPoint endPoint = new IPEndPoint(IPAddress.Any,0);
+
+                    do
+                    {
+                        //отримання повідомлень.
+                        bytes = listeningSocket.ReceiveFrom(data, ref endPoint);
+
+                        //декодування діапазону байтів з масиву байтів в строку.
+                        stringBuilder.Append()
+
+                    }
+                    while (listeningSocket.Available > 0);//повертає кількість отриманих і доступних для читання даних.
 
 
                 }
