@@ -14,8 +14,7 @@ namespace AsynchUPD
             Console.WriteLine("User name {0} \n-------", name);
             var ip = IPAddress.Parse("127.0.0.1");
             Socket sock = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-            //sock1.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ExclusiveAddressUse, 1);
-
+           
             //Адреса і порт,звідки дані відправляються.
             IPEndPoint iep1 = new IPEndPoint(ip, 9060);
 

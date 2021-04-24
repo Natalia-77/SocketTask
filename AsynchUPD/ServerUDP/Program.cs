@@ -28,6 +28,7 @@ namespace ServerUDP
 
             //socket.BeginReceiveFrom(buffer, 0, buffer.Length, SocketFlags.None, ref endPoint,
             //new AsyncCallback(ReceiveCallback), socket);
+            //ідентичний нижньому запису.
 
             socket.BeginReceiveFrom(buffer, 0, buffer.Length, SocketFlags.None, ref endPoint,
               recv= (ar)=>
@@ -41,17 +42,16 @@ namespace ServerUDP
                    int n = socket.EndReceiveFrom(ar, ref endPoint);
                    Console.WriteLine(Encoding.UTF8.GetString(buffer, 0, n));
 
-                  //if (clientDatas.Count > 1)
-                  //    foreach (var clientData in clientDatas)
-                  //    {
-                  //        clientData.Socket.SendTo(buffer, data.EndPoint);
-                  //    }
+                  if (clientDatas.Count > 1)
+                      foreach (var clientData in clientDatas)
+                      {
+                          clientData.Socket.SendTo(buffer, data.EndPoint);
+                      }
 
 
                   //читання даних з сокета клієнта в асинхронному режимі.
                   data.Socket.BeginReceiveFrom(buffer, 0, buffer.Length, SocketFlags.None, ref data.EndPoint,
                        recv, socket);
-
 
                }, socket);
 
