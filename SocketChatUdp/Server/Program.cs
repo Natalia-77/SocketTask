@@ -10,15 +10,15 @@ namespace Server
     class Program
     {
         // порт для прийому повідомлень.
-        static int localPort; 
-        static Socket listeningSocket; 
+        static int localPort;
+        static Socket listeningSocket;
 
         //список унікальних клієнтів.
-        static List<IPEndPoint> clients = new List<IPEndPoint>(); 
+        static List<IPEndPoint> clients = new List<IPEndPoint>();
 
         static void Main(string[] args)
         {
-            
+
             Console.WriteLine("This is a chat)))");
             Console.Write("Enter port for reseive message: ");
             localPort = int.Parse(Console.ReadLine());
@@ -27,13 +27,13 @@ namespace Server
             try
             {
                 //створення сокета.
-                listeningSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp); 
+                listeningSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
 
                 //створення потоку.
                 Task listeningTask = new Task(Listen);
 
                 //запуск потока.
-                listeningTask.Start(); 
+                listeningTask.Start();
 
                 //поток має бути зупинений і тільки тоді іде далі.
                 listeningTask.Wait();
@@ -41,11 +41,11 @@ namespace Server
             catch (Exception ex)
             {
                 Console.WriteLine("Error message: " + ex.Message.ToString());
-                
+
             }
             finally
             {
-                Close(); 
+                Close();
             }
         }
         private static void Listen()
@@ -66,10 +66,10 @@ namespace Server
                     int bytes = 0;
 
                     //буфер для отриманих даних.
-                    byte[] data = new byte[256]; 
+                    byte[] data = new byte[256];
 
                     //адреса,з якої прийшли дані.
-                    EndPoint remoteIp = new IPEndPoint(IPAddress.Any, 0); 
+                    EndPoint remoteIp = new IPEndPoint(IPAddress.Any, 0);
 
                     do
                     {
@@ -83,50 +83,47 @@ namespace Server
                     while (listeningSocket.Available > 0);
 
                     // дані про підключення.
-                    IPEndPoint remotedata = remoteIp as IPEndPoint; 
+                    IPEndPoint remotedata = remoteIp as IPEndPoint;
 
                     //виводимо повідомлення в консолі сервера.
-                    Console.WriteLine("{0}:{1} - {2}", remotedata.Address.ToString(), remotedata.Port, builder.ToString()); 
-
+                    Console.WriteLine("{0}:{1} - {2}", remotedata.Address.ToString(), remotedata.Port, builder.ToString());
                     //перевірка,чи клієнт новий.
                     bool addClient = true;
 
                     //проходимо циклом по всім клієнтам.
                     for (int i = 0; i < clients.Count; i++)
-                    {
+                      
                         //перевірка,чи адреса відправника співпадає з адресою клієнта у списку що є. 
-                        if (clients[i].Address.ToString() == remotedata.Address.ToString())
+                        if (clients[i].Port.ToString() == remotedata.Port.ToString())
 
                             //тоді нового клієнта не додаємо.
                             addClient = false;
-
-
-                        //якщо немає твкого клієнта в списку.
-                        if (addClient == true)
-                        {
-                            //тоді додаємо.
-                            clients.Add(remotedata);
-                        }
-                    }
-
+                    
+                    //якщо немає твкого клієнта в списку.
+                    if (addClient == true)
+                       
+                        //тоді додаємо.
+                        clients.Add(remotedata);
+                   
                     //розсилка повідомлення всім клієнтам крім самого віправника.
                     //формування байт з тексту.
-                        byte[] datas = Encoding.Unicode.GetBytes(builder.ToString()); 
+                    byte[] datas = Encoding.Unicode.GetBytes(builder.ToString());
 
                     for (int i = 0; i < clients.Count; i++)
-                    {
-                        // чкщо адреса отримувача не співпадає з адресою відправника.
-                        if (clients[i].Address.ToString() != remotedata.Address.ToString()) 
+                       
+                         // чкщо адреса отримувача не співпадає з адресою відправника.
+                        if (clients[i].Port.ToString() != remotedata.Port.ToString())
 
                             //тоді відправляє повідомлення.
-                            listeningSocket.SendTo(data, clients[i]);
-                    }                    
-                   
+                            listeningSocket.SendTo(datas, clients[i]);
+                    
+
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine("Error message: " + ex.Message.ToString());
+                
             }
             finally
             {
@@ -134,7 +131,8 @@ namespace Server
             }
         }
 
-        
+
+
         private static void Close()
         {
             if (listeningSocket != null)

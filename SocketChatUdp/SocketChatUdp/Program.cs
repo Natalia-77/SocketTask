@@ -12,7 +12,7 @@ namespace Client
         static int remotePort;
 
         //IP-адреса сервера(отримувача).
-        static  IPAddress ipAddress;
+        static IPAddress ipAddress;
 
         // Сокет
         static Socket listeningSocket;
@@ -21,7 +21,7 @@ namespace Client
 
         static void Main(string[] args)
         {
-            
+
             Console.WriteLine("Enter IP server");
             ipAddress = IPAddress.Parse(Console.ReadLine());
 
@@ -35,23 +35,23 @@ namespace Client
 
             try
             {
-                
-                listeningSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp); 
+
+                listeningSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
 
                 //Створення потоку
-                Task listeningTask = new Task(Listen); 
+                Task listeningTask = new Task(Listen);
 
                 //Запуск потоку.
-                listeningTask.Start(); 
+                listeningTask.Start();
 
                 //відправка повідомлень від клієнтів в безкінечному циклі.
-                while(true)
+                while (true)
                 {
                     //клієнт вводить повідомлення.
                     string message = Console.ReadLine();
 
                     //перетворення в масив байт введеного повідомлення клієнтом.
-                    byte[] data = Encoding.Unicode.GetBytes(name +": "+message);
+                    byte[] data = Encoding.Unicode.GetBytes(name + ": " + message);
 
                     //встановлення кінцевої точки для доставки повідомлення.
                     EndPoint remotePoint = new IPEndPoint(ipAddress, remotePort);
@@ -60,15 +60,15 @@ namespace Client
                     listeningSocket.SendTo(data, remotePoint);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine("Error message: " + ex.Message.ToString());
             }
             finally
             {
                 Close();
-                
-            }          
+
+            }
 
 
         }
@@ -99,7 +99,7 @@ namespace Client
             try
             {
                 //в безкінечному циклі прийматимуться повідомлення.
-                while(true)
+                while (true)
                 {
                     //отримання повідомлення.
                     StringBuilder stringBuilder = new StringBuilder();
@@ -111,7 +111,7 @@ namespace Client
                     byte[] data = new byte[256];
 
                     //адреса,з якої прийшли дані.
-                    EndPoint endPoint = new IPEndPoint(IPAddress.Any,0);
+                    EndPoint endPoint = new IPEndPoint(IPAddress.Any, 0);
 
                     do
                     {
@@ -122,23 +122,23 @@ namespace Client
                         stringBuilder.Append(Encoding.Unicode.GetString(data, 0, bytes));
                     }
                     while (listeningSocket.Available > 0);//повертає кількість отриманих і доступних для читання даних.
-                    
+
                     IPEndPoint pEndPoint = endPoint as IPEndPoint;
                     Console.WriteLine("{0}:{1} --->> {2}", pEndPoint.Address.ToString(), pEndPoint.Port, stringBuilder.ToString());
                 }
 
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                Console.WriteLine("Error message"+ ex.Message.ToString());
+                Console.WriteLine("Error message" + ex.Message.ToString());
             }
             finally
             {
                 Close();
             }
 
-
         }
+
     }
 }
